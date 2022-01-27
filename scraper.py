@@ -5,12 +5,19 @@ from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 
 
+# Used to store the number of tokens for each URL
+numOfTokenPerURL = {}
+
+
 def isUniquePage(url):
-    #testing Ayako
     pass
 
 def addUniquePage(url):
     pass
+
+# Returns the URL with the most words/tokens in that page
+def longestPage():
+    return max(numOfTokenPerURL, key=numOfTokenPerURL.get)
 
 def addFreqDist(text):
     pass
@@ -34,9 +41,12 @@ def extract_next_links(url, resp):
     #         resp.raw_response.url: the url, again
     #         resp.raw_response.content: the content of the page!
     # Return a list with the hyperlinks (as strings) scrapped from resp.raw_response.content
+    
     links = []
+
     if not resp.error:
         htmlContent = resp.raw_response.content
+
         # creates the soup object to extract all the text
         soup = BeautifulSoup(htmlContent,'html.parser')
 
@@ -50,7 +60,6 @@ def extract_next_links(url, resp):
 
         # tokenizer that only tokenizes lower case words including apostrophes
         # and hyphenated words
-
         tokenizer = RegexpTokenizer('[a-z]+?-?[a-z]+')
         tokens = tokenizer.tokenize(fullText)
 
@@ -58,6 +67,13 @@ def extract_next_links(url, resp):
         filteredTokens = [word for word in tokens if word not in stopwords]
 
         # add words top frequency dictionary
+
+        
+        # Adding in the url with number of words to numOfTokenPerURL
+        # numOfTokenPerURL used later to find the longest URL by word count
+        # within addUniquePage function - Ayako
+        numOfTokenPerURL[resp.url] = filteredTokens.len()
+
 
     else:
         print("An error occurred while attempting to access the page.\n")
