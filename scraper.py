@@ -3,7 +3,10 @@ from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
+from collections import Counter
 
+# dict containing text of each URL
+urlFullText = dict()
 
 def isUniquePage(url):
     #testing Ayako
@@ -12,8 +15,28 @@ def isUniquePage(url):
 def addUniquePage(url):
     pass
 
-def addFreqDist(text):
-    pass
+# Gets the 50 most common words in the entire set of pages crawled,
+# ignoring stop words
+def addFreqDist(urlTextDict):
+    allPages = ""
+
+    # Parse all of the urls and their associated text and add it 
+    # to a single string
+    for text in urlTextDict.values():
+        allPages += text + " "
+    
+    # Create a list of all of the tokens encountered
+    splitPages = allPages.split()
+
+    # Pass the list of tokens into a counter object
+    pagesCounter = Counter(splitPages)
+
+    # Call the most_common() function from the Counter
+    # library that gets the most common words in the
+    # counter object
+    freqList = pagesCounter.most_common(50)
+
+    return freqList
 
 def addSubdomains(url):
     pass
@@ -57,7 +80,8 @@ def extract_next_links(url, resp):
         # filter out the stop words according to nltk
         filteredTokens = [word for word in tokens if word not in stopwords]
 
-        # add words top frequency dictionary
+        # add words to frequency dictionary
+        urlFullText[url] = filteredTokens
 
     else:
         print("An error occurred while attempting to access the page.\n")
