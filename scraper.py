@@ -126,7 +126,7 @@ def extract_next_links(url, resp):
 
 
         # Check if the page has high textual information content
-        if 20 <= len(filteredTokens) <= 50000:
+        if len(filteredTokens) <= 20:
             pass
         else:
             # extract all the links in the document
@@ -136,7 +136,7 @@ def extract_next_links(url, resp):
                         subDomains[url] = 1
                     else:
                         subDomains[url] += 1
-                if is_valid(link):
+                if is_valid(link.get('href')) and isUniquePage(link.get('href')):
                     print(link)
                     links.append(link.get('href'))
 
