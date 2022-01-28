@@ -99,17 +99,6 @@ def extract_next_links(url, resp):
         # creates the soup object to extract all the text
         soup = BeautifulSoup(htmlContent,'html.parser')
 
-        # extract all the links in the document
-        for link in soup.find_all('a'):
-            link = removeFragment(link)
-            if isSubdomain(url):
-                if url not in subDomains:
-                    subDomains[url] = 1
-                else:
-                    subDomains[url] += 1
-            if is_valid(link):
-                links.append(link.get('href'))
-
 
         # get all text from the document in one string
         fullText = soup.get_text().lower()
@@ -127,7 +116,6 @@ def extract_next_links(url, resp):
         filteredTokens = [word for word in tokens if word not in stopwords]
 
 
-        # add words top frequency dictionary
         # add words to frequency dictionary
         urlFullText[url] = filteredTokens
 
@@ -136,6 +124,21 @@ def extract_next_links(url, resp):
         # numOfTokenPerURL used later to find the longest URL by word count
         # within addUniquePage function - Ayako
         numOfTokenPerURL[resp.url] = filteredTokens.len()
+
+
+        # Check if the page has high textual information content
+        if len(filteredTokens) < 20:
+            pass
+        else:
+            # extract all the links in the document
+            for link in soup.find_all('a'):
+                if isSubdomain(url):
+                    if url not in subDomains:
+                        subDomains[url] = 1
+                    else:
+                        subDomains[url] += 1
+                if is_valid(link):
+                    links.append(link.get('href'))
 
 
     else:
