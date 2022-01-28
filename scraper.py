@@ -122,7 +122,6 @@ def extract_next_links(url, resp):
         filteredTokens = [word for word in tokens if word not in stopwords]
 
 
-        # add words top frequency dictionary
         # add words to frequency dictionary
         urlFullText[url] = filteredTokens
 
