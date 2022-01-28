@@ -3,7 +3,9 @@ from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
+from collections import OrderedDict
 
+subDomains = OrderedDict()
 
 def isUniquePage(url):
     #testing Ayako
@@ -15,9 +17,11 @@ def addUniquePage(url):
 def addFreqDist(text):
     pass
 
-def addSubdomains(url):
-    pass
 
+
+def isSubdomain(url):
+    isMatch = re.match('(https?:\/\/[a-z]+.ics.uci.edu)',url)
+    return isMatch
 
 
 def scraper(url, resp):
@@ -42,8 +46,14 @@ def extract_next_links(url, resp):
 
         # extract all the links in the document
         for link in soup.find_all('a'):
+            if isSubdomain(url):
+                if url not in subDomains:
+                    subDomains[url] = 1
+                else:
+                    subDomains[url] += 1
             if is_valid(link):
                 links.append(link.get('href'))
+
 
         # get all text from the document in one string
         fullText = soup.get_text().lower()
@@ -51,11 +61,13 @@ def extract_next_links(url, resp):
         # tokenizer that only tokenizes lower case words including apostrophes
         # and hyphenated words
 
+        # TODO: might have to change it to og tokenizer
         tokenizer = RegexpTokenizer('[a-z]+?-?[a-z]+')
         tokens = tokenizer.tokenize(fullText)
 
         # filter out the stop words according to nltk
         filteredTokens = [word for word in tokens if word not in stopwords]
+
 
         # add words top frequency dictionary
 
