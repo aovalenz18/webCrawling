@@ -156,9 +156,11 @@ def is_valid(url):
         if parsed.scheme not in set(["http", "https"]):
             return False
 
-        # domainStr = "ics.uci.edu cs.uci.edu informatics.uci.edu stat.uci.edu today.uci.edu"
-        # if parsed.hostname not in domainStr:
-        #     return False
+        if not re.match(r".+ics\.uci\.edu", parsed.hostname):
+            if not re.match(r".+cs\.uci\.edu", parsed.hostname):
+                if not re.match(r".+informatics\.uci\.edu", parsed.hostname):  
+                    if not re.match(r".+today\.uci\.edu", parsed.hostname) and not re.match(r".+department\/information\_computer\_sciences", parsed.path.lower()):
+                        return False
 
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
