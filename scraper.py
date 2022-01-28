@@ -126,7 +126,7 @@ def extract_next_links(url, resp):
 
 
         # Check if the page has high textual information content
-        if len(filteredTokens) < 20:
+        if 20 <= len(filteredTokens) <= 50000:
             pass
         else:
             # extract all the links in the document
