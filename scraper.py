@@ -122,15 +122,19 @@ def extract_next_links(url, resp):
         numOfTokenPerURL[resp.url] = filteredTokens.len()
 
 
-        # extract all the links in the document
-        for link in soup.find_all('a'):
-            if isSubdomain(url):
-                if url not in subDomains:
-                    subDomains[url] = 1
-                else:
-                    subDomains[url] += 1
-            if is_valid(link):
-                links.append(link.get('href'))
+        # Check if the page has high textual information content
+        if len(filteredTokens) < 20:
+            pass
+        else:
+            # extract all the links in the document
+            for link in soup.find_all('a'):
+                if isSubdomain(url):
+                    if url not in subDomains:
+                        subDomains[url] = 1
+                    else:
+                        subDomains[url] += 1
+                if is_valid(link):
+                    links.append(link.get('href'))
 
 
     else:
