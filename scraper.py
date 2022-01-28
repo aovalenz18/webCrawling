@@ -156,11 +156,12 @@ def is_valid(url):
         if parsed.scheme not in set(["http", "https"]):
             return False
 
-        if not re.match(r".+ics\.uci\.edu", parsed.hostname):
-            if not re.match(r".+cs\.uci\.edu", parsed.hostname):
-                if not re.match(r".+informatics\.uci\.edu", parsed.hostname):  
-                    if not re.match(r".+today\.uci\.edu", parsed.hostname) and not re.match(r".+department\/information\_computer\_sciences", parsed.path.lower()):
-                        return False
+        if not re.match(r".+\.ics\.uci\.edu", parsed.hostname):
+            if not re.match(r".+\.cs\.uci\.edu", parsed.hostname):
+                if not re.match(r".+\.informatics\.uci\.edu", parsed.hostname):
+                    if not re.match(r".+\.stat\.uci\.edu", parsed.hostname):  
+                        if not re.match(r".+today\.uci\.edu", parsed.hostname) and not re.match(r".+department\/information\_computer\_sciences.*", parsed.path.lower()):
+                            return False
 
         for blocked in blockedList:
             match = url.find(blocked)
