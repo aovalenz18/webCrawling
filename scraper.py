@@ -16,6 +16,10 @@ numOfTokenPerURL = {}
 
 urls = set()   # set that stores all urls
 
+def removeFragment(url):
+    url = url.split('#')
+    return url[0]
+
 # boolean function that returns if the url is stored in urls or not
 def isUniquePage(url):
     str = ""
@@ -89,7 +93,7 @@ def extract_next_links(url, resp):
     
     links = []
 
-    if not resp.error:
+    if not resp.error and resp.status == "204" and resp.status == "206":
         htmlContent = resp.raw_response.content
 
         # creates the soup object to extract all the text
@@ -97,6 +101,7 @@ def extract_next_links(url, resp):
 
         # extract all the links in the document
         for link in soup.find_all('a'):
+            link = removeFragment(link)
             if isSubdomain(url):
                 if url not in subDomains:
                     subDomains[url] = 1
@@ -142,12 +147,12 @@ def is_valid(url):
     # Decide whether to crawl this url or not. 
     # If you decide to crawl it, return True; otherwise return False.
     # There are already some conditions that return False.
-
     # TODO: check if valid domain and that we haven't crawled it before (look at fragment of URl)
     try:
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
+
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
