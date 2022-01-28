@@ -6,16 +6,64 @@ from nltk.corpus import stopwords
 from collections import OrderedDict
 
 subDomains = OrderedDict()
+from collections import Counter
 
+# dict containing text of each URL
+urlFullText = dict()
+
+# Used to store the number of tokens for each URL
+numOfTokenPerURL = {}
+
+urls = set()   # set that stores all urls
+
+# boolean function that returns if the url is stored in urls or not
 def isUniquePage(url):
-    #testing Ayako
-    pass
+    str = ""
+    for c in url:
+        if c != "#":
+            str += c
+        else:
+            break
 
+    if str in urls:
+        return False
+    return True
+
+# returns number of unique urls from url set
+def numOfUniqueUrls(url_set):
+    return len(urls)
+
+# void function that adds url if it's unique
 def addUniquePage(url):
-    pass
+    if isUniquePage(url):
+        urls.add(url)
 
-def addFreqDist(text):
-    pass
+# Returns the URL with the most words/tokens in that page
+def longestPage():
+    return max(numOfTokenPerURL, key=numOfTokenPerURL.get)
+
+# Gets the 50 most common words in the entire set of pages crawled,
+# ignoring stop words
+def addFreqDist(urlTextDict):
+    allPages = ""
+
+    # Parse all of the urls and their associated text and add it 
+    # to a single string
+    for text in urlTextDict.values():
+        allPages += text + " "
+    
+    # Create a list of all of the tokens encountered
+    splitPages = allPages.split()
+
+    # Pass the list of tokens into a counter object
+    pagesCounter = Counter(splitPages)
+
+    # Call the most_common() function from the Counter
+    # library that gets the most common words in the
+    # counter object
+    freqList = pagesCounter.most_common(50)
+
+    return freqList
 
 
 
@@ -38,9 +86,12 @@ def extract_next_links(url, resp):
     #         resp.raw_response.url: the url, again
     #         resp.raw_response.content: the content of the page!
     # Return a list with the hyperlinks (as strings) scrapped from resp.raw_response.content
+    
     links = []
+
     if not resp.error:
         htmlContent = resp.raw_response.content
+
         # creates the soup object to extract all the text
         soup = BeautifulSoup(htmlContent,'html.parser')
 
@@ -61,7 +112,9 @@ def extract_next_links(url, resp):
         # tokenizer that only tokenizes lower case words including apostrophes
         # and hyphenated words
 
+
         # TODO: might have to change it to og tokenizer
+
         tokenizer = RegexpTokenizer('[a-z]+?-?[a-z]+')
         tokens = tokenizer.tokenize(fullText)
 
@@ -70,6 +123,15 @@ def extract_next_links(url, resp):
 
 
         # add words top frequency dictionary
+        # add words to frequency dictionary
+        urlFullText[url] = filteredTokens
+
+        
+        # Adding in the url with number of words to numOfTokenPerURL
+        # numOfTokenPerURL used later to find the longest URL by word count
+        # within addUniquePage function - Ayako
+        numOfTokenPerURL[resp.url] = filteredTokens.len()
+
 
     else:
         print("An error occurred while attempting to access the page.\n")
