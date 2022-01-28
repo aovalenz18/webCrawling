@@ -1,6 +1,7 @@
 import re
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
+import urllib3
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from collections import OrderedDict
@@ -155,6 +156,11 @@ def is_valid(url):
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
+
+        domainStr = "ics.uci.edu cs.uci.edu informatics.uci.edu stat.uci.edu today.uci.edu"
+        if parsed.hostname not in domainStr:
+            return False
+
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
