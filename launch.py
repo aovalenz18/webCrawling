@@ -10,9 +10,12 @@ def main(config_file, restart):
     cparser = ConfigParser()
     cparser.read(config_file)
     config = Config(cparser)
+    print("Before cache")
     config.cache_server = get_cache_server(config, restart)
+    print("after cache")
     crawler = Crawler(config, restart)
     crawler.start()
+    print("Started crawler")
 
 
 if __name__ == "__main__":

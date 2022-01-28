@@ -92,7 +92,6 @@ def extract_next_links(url, resp):
     # Return a list with the hyperlinks (as strings) scrapped from resp.raw_response.content
     
     links = []
-
     if not resp.error and resp.status != "204" and resp.status != "206":
         htmlContent = resp.raw_response.content
 
@@ -113,17 +112,17 @@ def extract_next_links(url, resp):
         tokens = tokenizer.tokenize(fullText)
 
         # filter out the stop words according to nltk
-        filteredTokens = [word for word in tokens if word not in stopwords]
+        filteredTokens = [word for word in tokens if word not in stopwords.words('english')]
 
 
         # add words to frequency dictionary
-        urlFullText[url] = filteredTokens
+        urlFullText[url] = " ".join(filteredTokens)
 
         
         # Adding in the url with number of words to numOfTokenPerURL
         # numOfTokenPerURL used later to find the longest URL by word count
         # within addUniquePage function - Ayako
-        numOfTokenPerURL[resp.url] = filteredTokens.len()
+        numOfTokenPerURL[resp.url] = len(filteredTokens)
 
 
         # Check if the page has high textual information content
@@ -137,7 +136,8 @@ def extract_next_links(url, resp):
                         subDomains[url] = 1
                     else:
                         subDomains[url] += 1
-                if is_valid(link) and isUniquePage(link):
+                if is_valid(link):
+                    print(link)
                     links.append(link.get('href'))
 
 
@@ -156,9 +156,9 @@ def is_valid(url):
         if parsed.scheme not in set(["http", "https"]):
             return False
 
-        domainStr = "ics.uci.edu cs.uci.edu informatics.uci.edu stat.uci.edu today.uci.edu"
-        if parsed.hostname not in domainStr:
-            return False
+        # domainStr = "ics.uci.edu cs.uci.edu informatics.uci.edu stat.uci.edu today.uci.edu"
+        # if parsed.hostname not in domainStr:
+        #     return False
 
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
@@ -171,5 +171,5 @@ def is_valid(url):
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
 
     except TypeError:
-        print ("TypeError for ", parsed)
-        raise
+       # print ("TypeError")
+        return False
