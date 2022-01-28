@@ -126,7 +126,7 @@ def extract_next_links(url, resp):
 
 
         # Check if the page has high textual information content
-        if len(filteredTokens) <= 20:
+        if len(filteredTokens) <= 20 and len(htmlContent) > 5000000:
             pass
         else:
             # extract all the links in the document
@@ -140,7 +140,6 @@ def extract_next_links(url, resp):
                     print(link)
                     links.append(link.get('href'))
 
-
     else:
         print("An error occurred while attempting to access the page.\n")
 
@@ -152,6 +151,7 @@ def is_valid(url):
     # There are already some conditions that return False.
     # TODO: check if valid domain and that we haven't crawled it before (look at fragment of URl)
     try:
+        blockedList = ["evoke","wics","sli"]
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
@@ -161,6 +161,11 @@ def is_valid(url):
                 if not re.match(r".+informatics\.uci\.edu", parsed.hostname):  
                     if not re.match(r".+today\.uci\.edu", parsed.hostname) and not re.match(r".+department\/information\_computer\_sciences", parsed.path.lower()):
                         return False
+
+        for blocked in blockedList:
+            match = url.find(blocked)
+            if match > -1:
+                return False
 
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
