@@ -5,6 +5,7 @@ from utils.download import download
 from utils import get_logger
 import scraper
 import time
+from scraper import urlFullText, subDomains, numOfTokenPerURL, urls, numOfUniqueUrls, longestPage, addFreqDist
 
 
 
@@ -32,6 +33,10 @@ class Worker(Thread):
                 self.frontier.add_url(scraped_url)
             self.frontier.mark_url_complete(tbd_url)
             time.sleep(self.config.time_delay)
+        print(numOfUniqueUrls(urls))
+        print(longestPage())
+        print(addFreqDist(urlFullText))
+        print(len(subDomains))
             
 
 
