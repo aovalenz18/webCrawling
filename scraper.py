@@ -8,12 +8,29 @@ from nltk.corpus import stopwords
 # Used to store the number of tokens for each URL
 numOfTokenPerURL = {}
 
+urls = set()   # set that stores all urls
 
+# boolean function that returns if the url is stored in urls or not
 def isUniquePage(url):
-    pass
+    str = ""
+    for c in url:
+        if c != "#":
+            str += c
+        else:
+            break
 
+    if str in urls:
+        return False
+    return True
+
+# returns number of unique urls from url set
+def numOfUniqueUrls(url_set):
+    return len(urls)
+
+# void function that adds url if it's unique
 def addUniquePage(url):
-    pass
+    if isUniquePage(url):
+        urls.add(url)
 
 # Returns the URL with the most words/tokens in that page
 def longestPage():
