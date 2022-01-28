@@ -93,7 +93,7 @@ def extract_next_links(url, resp):
     
     links = []
 
-    if not resp.error and resp.status == "204" and resp.status == "206":
+    if not resp.error and resp.status != "204" and resp.status != "206":
         htmlContent = resp.raw_response.content
 
         # creates the soup object to extract all the text
@@ -155,7 +155,6 @@ def is_valid(url):
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
-
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
