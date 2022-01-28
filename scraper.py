@@ -131,6 +131,7 @@ def extract_next_links(url, resp):
         else:
             # extract all the links in the document
             for link in soup.find_all('a'):
+
                 if isSubdomain(url):
                     if url not in subDomains:
                         subDomains[url] = 1
@@ -139,6 +140,7 @@ def extract_next_links(url, resp):
                 if is_valid(link.get('href')) and isUniquePage(link.get('href')):
                     print(link)
                     links.append(link.get('href'))
+                    urls.add(link.get('href'))
 
     else:
         print("An error occurred while attempting to access the page.\n")
@@ -156,11 +158,12 @@ def is_valid(url):
         if parsed.scheme not in set(["http", "https"]):
             return False
 
-        if not re.match(r".+ics\.uci\.edu", parsed.hostname):
-            if not re.match(r".+cs\.uci\.edu", parsed.hostname):
-                if not re.match(r".+informatics\.uci\.edu", parsed.hostname):  
-                    if not re.match(r".+today\.uci\.edu", parsed.hostname) and not re.match(r".+department\/information\_computer\_sciences", parsed.path.lower()):
-                        return False
+        if not re.match(r".+\.ics\.uci\.edu", parsed.hostname):
+            if not re.match(r".+\.cs\.uci\.edu", parsed.hostname):
+                if not re.match(r".+\.informatics\.uci\.edu", parsed.hostname):
+                    if not re.match(r".+\.stat\.uci\.edu", parsed.hostname):  
+                        if not re.match(r".+today\.uci\.edu", parsed.hostname) and not re.match(r".+department\/information\_computer\_sciences.*", parsed.path.lower()):
+                            return False
 
         for blocked in blockedList:
             match = url.find(blocked)
