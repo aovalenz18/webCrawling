@@ -71,7 +71,6 @@ def addFreqDist(urlTextDict):
     return freqList
 
 
-
 def isSubdomain(url):
     isMatch = re.match('(https?:\/\/[a-z]+.ics.uci.edu)',url)
     return isMatch
@@ -138,7 +137,7 @@ def extract_next_links(url, resp):
                         subDomains[url] = 1
                     else:
                         subDomains[url] += 1
-                if is_valid(link):
+                if is_valid(link) and isUniquePage(link):
                     links.append(link.get('href'))
 
 
