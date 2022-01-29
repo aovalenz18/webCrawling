@@ -34,10 +34,12 @@ class Worker(Thread):
             self.frontier.mark_url_complete(tbd_url)
             time.sleep(self.config.time_delay)
         with open("output.txt", "w") as report:
-            report.write(numOfUniqueUrls(urls))
-            report.write(longestPage())
-            report.write(addFreqDist(urlFullText))
-            report.write(subDomains.items())
+            report.write(str(numOfUniqueUrls(urls)))
+            report.write(str(longestPage()))
+            for i in addFreqDist():
+                report.write(f'{i[0]} found {i[1]} times \n')
+            for i in subDomains.items():
+                report.write(f'{i[0]} has {i[1]} unique pages \n')
         print(numOfUniqueUrls(urls))
         print(longestPage())
         print(addFreqDist(urlFullText))
