@@ -138,7 +138,6 @@ def extract_next_links(url, resp):
                     else:
                         subDomains[url] += 1
                 if is_valid(link.get('href')) and isUniquePage(link.get('href')):
-                    print(link)
                     links.append(link.get('href'))
                     urls.add(link.get('href'))
 
