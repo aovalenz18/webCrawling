@@ -40,8 +40,8 @@ class Worker(Thread):
         print(len(subDomains))
 
         with open("output.txt", "w") as report:
-            report.write(str(numOfUniqueUrls(urls)))
-            report.write(str(longestPage()))
+            report.write(str(numOfUniqueUrls(urls)) + '\n')
+            report.write(str(longestPage()) + '\n')
             for i in addFreqDist(urlFullText):
                 report.write(f'{i[0]} found {i[1]} times \n')
             for i in subDomains.items():
