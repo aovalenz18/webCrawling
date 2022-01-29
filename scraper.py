@@ -153,7 +153,7 @@ def is_valid(url):
     # There are already some conditions that return False.
     # TODO: check if valid domain and that we haven't crawled it before (look at fragment of URl)
     try:
-        blockedList = ["evoke","wics","sli","ngs","chen-li"]
+        blockedList = ["evoke","wics","ngs","chen-li"]
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
@@ -171,7 +171,7 @@ def is_valid(url):
                 return False
 
         return not re.match(
-            r".*\.(css|js|bmp|gif|jpe?g|ico"
+            r".*\.(css|js|bmp|gif|jpe?g|ico|ppsx"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
             + r"|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf"
             + r"|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names"
