@@ -33,6 +33,11 @@ class Worker(Thread):
                 self.frontier.add_url(scraped_url)
             self.frontier.mark_url_complete(tbd_url)
             time.sleep(self.config.time_delay)
+        with open("output.txt", "w") as report:
+            report.write(numOfUniqueUrls(urls))
+            report.write(longestPage())
+            report.write(addFreqDist(urlFullText))
+            report.write(subDomains.items())
         print(numOfUniqueUrls(urls))
         print(longestPage())
         print(addFreqDist(urlFullText))
