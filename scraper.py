@@ -92,7 +92,7 @@ def extract_next_links(url, resp):
     # Return a list with the hyperlinks (as strings) scrapped from resp.raw_response.content
     
     links = []
-    if not resp.error and resp.status != "204" and resp.status != "206":
+    if resp.status == 200:
         htmlContent = resp.raw_response.content
 
         # creates the soup object to extract all the text
