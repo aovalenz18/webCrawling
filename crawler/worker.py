@@ -39,6 +39,10 @@ class Worker(Thread):
         print(addFreqDist(urlFullText))
         print(len(subDomains))
 
+        sorted(subDomains.keys())
+        for key in sorted(subDomains.keys()):
+            print(key, " ", subDomains[key])
+
         with open("output.txt", "w") as report:
             report.write(str(numOfUniqueUrls(urls)) + '\n')
             report.write(str(longestPage()) + '\n')
