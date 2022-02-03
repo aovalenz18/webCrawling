@@ -73,7 +73,10 @@ def addFreqDist(urlTextDict):
 
 def isSubdomain(url):
     isMatch = re.match('(https?:\/\/[a-z]+.ics.uci.edu)',url)
-    return isMatch
+    if isMatch:
+        return isMatch, isMatch.group(0)
+    else:
+        return False, False
 
 
 def scraper(url, resp):
@@ -130,13 +133,20 @@ def extract_next_links(url, resp):
             pass
         else:
             # extract all the links in the document
-            for link in soup.find_all('a'):
+            isMatch, subDomain = isSubdomain(url)
+            if isMatch:
+                if subDomain not in subDomains:
+                    subDomains[subDomain] = 1
+                else:
+                    subDomains[subDomain] += 1
 
-                if isSubdomain(url):
-                    if url not in subDomains:
-                        subDomains[url] = 1
-                    else:
-                        subDomains[url] += 1
+            for link in soup.find_all('a'):
+                # isMatch, subDomain = isSubdomain()
+                # if isSubdomain(url):
+                #     if url not in subDomains:
+                #         subDomains[url] = 1
+                #     else:
+                #         subDomains[url] += 1
                 if is_valid(link.get('href')) and isUniquePage(link.get('href')):
                     links.append(link.get('href'))
                     urls.add(link.get('href'))
@@ -152,7 +162,7 @@ def is_valid(url):
     # There are already some conditions that return False.
     # TODO: check if valid domain and that we haven't crawled it before (look at fragment of URl)
     try:
-        blockedList = ["evoke","wics","ngs","chen-li"]
+        blockedList = ["evoke","wics","ngs","chen-li", "sli"]
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False

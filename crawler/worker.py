@@ -39,9 +39,10 @@ class Worker(Thread):
         print(addFreqDist(urlFullText))
         print(len(subDomains))
 
-        with open("output.txt", "w") as report:
-            report.write(str(numOfUniqueUrls(urls)) + '\n')
-            report.write(str(longestPage()) + '\n')
+        with open("output.txt", "w+") as report:
+            report.write("Number of Unique URLS: " + str(numOfUniqueUrls(urls)) + '\n' + '\n')
+            report.write("Longest page found: " + str(longestPage()) + '\n' + '\n')
+
             for i in addFreqDist(urlFullText):
                 report.write(f'{i[0]} found {i[1]} times \n')
             for i in subDomains.items():

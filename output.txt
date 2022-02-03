@@ -1,0 +1,142 @@
+6872
+http://www.ics.uci.edu/~kay/wordlist.txt
+research found 26321 times 
+software found 17323 times 
+computer found 16964 times 
+student found 15220 times 
+information found 14522 times 
+data found 13028 times 
+uci found 12790 times 
+engineering found 12192 times 
+design found 11871 times 
+informatics found 11607 times 
+science found 11150 times 
+graduate found 10766 times 
+students found 10696 times 
+undergraduate found 10541 times 
+may found 10452 times 
+ph found 9342 times 
+department found 8940 times 
+ics found 8892 times 
+september found 8731 times 
+october found 8546 times 
+news found 8506 times 
+systems found 8049 times 
+august found 8049 times 
+june found 7935 times 
+course found 7840 times 
+policies found 7767 times 
+july found 7630 times 
+learning found 7433 times 
+faculty found 7126 times 
+march found 7080 times 
+school found 7073 times 
+april found 7035 times 
+time found 7012 times 
+support found 6963 times 
+university found 6938 times 
+november found 6884 times 
+january found 6782 times 
+projects found 6724 times 
+december found 6715 times 
+february found 6706 times 
+bren found 6701 times 
+irvine found 6683 times 
+profiles found 6626 times 
+game found 6401 times 
+process found 6259 times 
+people found 6243 times 
+new found 6061 times 
+application found 5980 times 
+contact found 5833 times 
+degrees found 5663 times 
+http://www.ics.uci.edu has 820 unique pages 
+https://www.ics.uci.edu has 352 unique pages 
+https://swiki.ics.uci.edu has 1 unique pages 
+https://intranet.ics.uci.edu has 1 unique pages 
+https://mswe.ics.uci.edu has 16 unique pages 
+https://code.ics.uci.edu has 11 unique pages 
+https://mds.ics.uci.edu has 11 unique pages 
+https://mcs.ics.uci.edu has 31 unique pages 
+https://mse.ics.uci.edu has 2 unique pages 
+http://mhcid.ics.uci.edu has 3 unique pages 
+https://mhcid.ics.uci.edu has 9 unique pages 
+http://isg.ics.uci.edu has 2 unique pages 
+https://isg.ics.uci.edu has 135 unique pages 
+https://ugradforms.ics.uci.edu has 1 unique pages 
+https://industryshowcase.ics.uci.edu has 20 unique pages 
+https://helpdesk.ics.uci.edu has 1 unique pages 
+http://sconce.ics.uci.edu has 2 unique pages 
+http://sprout.ics.uci.edu has 2 unique pages 
+http://luci.ics.uci.edu has 1 unique pages 
+https://chenli.ics.uci.edu has 1 unique pages 
+https://transformativeplay.ics.uci.edu has 58 unique pages 
+https://wearablegames.ics.uci.edu has 9 unique pages 
+http://graphics.ics.uci.edu has 3 unique pages 
+http://cert.ics.uci.edu has 2 unique pages 
+http://fr.ics.uci.edu has 3 unique pages 
+http://psearch.ics.uci.edu has 1 unique pages 
+https://nalini.ics.uci.edu has 6 unique pages 
+http://perennialpolycultures.ics.uci.edu has 1 unique pages 
+https://cyberclub.ics.uci.edu has 1 unique pages 
+https://redmiles.ics.uci.edu has 4 unique pages 
+https://create.ics.uci.edu has 6 unique pages 
+https://grape.ics.uci.edu has 12 unique pages 
+http://sli.ics.uci.edu has 302 unique pages 
+http://checkmate.ics.uci.edu has 1 unique pages 
+http://archive.ics.uci.edu has 3 unique pages 
+http://computableplant.ics.uci.edu has 32 unique pages 
+https://sli.ics.uci.edu has 203 unique pages 
+https://luci.ics.uci.edu has 3 unique pages 
+http://vision.ics.uci.edu has 7 unique pages 
+http://cml.ics.uci.edu has 2 unique pages 
+https://cml.ics.uci.edu has 170 unique pages 
+http://cloudberry.ics.uci.edu has 4 unique pages 
+https://cloudberry.ics.uci.edu has 38 unique pages 
+https://studentcouncil.ics.uci.edu has 3 unique pages 
+https://iasl.ics.uci.edu has 6 unique pages 
+https://duttgroup.ics.uci.edu has 89 unique pages 
+https://ipf.ics.uci.edu has 2 unique pages 
+http://xtune.ics.uci.edu has 6 unique pages 
+http://duttgroup.ics.uci.edu has 1 unique pages 
+http://dynamo.ics.uci.edu has 1 unique pages 
+https://acoi.ics.uci.edu has 56 unique pages 
+http://tastier.ics.uci.edu has 1 unique pages 
+http://ipubmed.ics.uci.edu has 1 unique pages 
+http://sherlock.ics.uci.edu has 1 unique pages 
+http://flamingo.ics.uci.edu has 6 unique pages 
+http://asterix.ics.uci.edu has 6 unique pages 
+http://esl.ics.uci.edu has 2 unique pages 
+https://scale.ics.uci.edu has 1 unique pages 
+http://futurehealth.ics.uci.edu has 2 unique pages 
+http://mondego.ics.uci.edu has 3 unique pages 
+http://frost.ics.uci.edu has 1 unique pages 
+http://sourcerer.ics.uci.edu has 1 unique pages 
+http://dejavu.ics.uci.edu has 1 unique pages 
+https://statconsulting.ics.uci.edu has 5 unique pages 
+https://aiclub.ics.uci.edu has 1 unique pages 
+https://futurehealth.ics.uci.edu has 2 unique pages 
+https://unite.ics.uci.edu has 10 unique pages 
+https://archive.ics.uci.edu has 1 unique pages 
+https://cbcl.ics.uci.edu has 3 unique pages 
+http://nalini.ics.uci.edu has 1 unique pages 
+http://sdcl.ics.uci.edu has 203 unique pages 
+https://accessibility.ics.uci.edu has 1 unique pages 
+http://tutors.ics.uci.edu has 1 unique pages 
+http://malek.ics.uci.edu has 1 unique pages 
+https://seal.ics.uci.edu has 1 unique pages 
+http://graphmod.ics.uci.edu has 1 unique pages 
+https://dgillen.ics.uci.edu has 19 unique pages 
+https://mdogucu.ics.uci.edu has 1 unique pages 
+http://plrg.ics.uci.edu has 14 unique pages 
+http://stairs.ics.uci.edu has 1 unique pages 
+https://emj.ics.uci.edu has 41 unique pages 
+http://code.ics.uci.edu has 1 unique pages 
+https://jgarcia.ics.uci.edu has 23 unique pages 
+http://seal.ics.uci.edu has 5 unique pages 
+http://cradl.ics.uci.edu has 11 unique pages 
+https://cradl.ics.uci.edu has 7 unique pages 
+https://hai.ics.uci.edu has 2 unique pages 
+http://hai.ics.uci.edu has 1 unique pages 
+http://informatics.ics.uci.edu has 28 unique pages 
+http://riscit.ics.uci.edu has 1 unique pages 
