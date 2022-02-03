@@ -42,10 +42,11 @@ class Worker(Thread):
         with open("output.txt", "w+") as report:
             report.write("Number of Unique URLS: " + str(numOfUniqueUrls(urls)) + '\n' + '\n')
             report.write("Longest page found: " + str(longestPage()) + '\n' + '\n')
-
+            report.write("50 Most Common Words Found\n")
             for i in addFreqDist(urlFullText):
                 report.write(f'{i[0]} found {i[1]} times \n')
-            for i in subDomains.items():
+            report.write("SubDomains Found and their Frequencies\n")
+            for i in sorted(subDomains.items()):
                 report.write(f'{i[0]} has {i[1]} unique pages \n')
             
 

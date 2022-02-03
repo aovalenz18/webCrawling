@@ -4,10 +4,11 @@ from bs4 import BeautifulSoup
 import urllib3
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
-from collections import OrderedDict
-
-subDomains = OrderedDict()
+#from collections import OrderedDict
 from collections import Counter
+
+#List of unique subdomains of ics.uci.edu
+subDomains = dict()
 
 # dict containing text of each URL
 urlFullText = dict()
@@ -71,12 +72,23 @@ def addFreqDist(urlTextDict):
     return freqList
 
 
+# Checks if url's domain has ics.uci.edu
+# If it is adds to subDomains and update counter
 def isSubdomain(url):
-    isMatch = re.match('(https?:\/\/[a-z]+.ics.uci.edu)',url)
-    if isMatch:
-        return isMatch, isMatch.group(0)
-    else:
-        return False, False
+    try:
+        parsed = urlparse(url)
+        if parsed.scheme not in set(["http", "https"]):
+            return
+
+        if re.match(r".+\.ics\.uci\.edu", parsed.hostname):
+            newURL = parsed.scheme + "://" + parsed.hostname
+            if newURL not in subDomains:
+                subDomains[newURL] = 1
+            else:
+                subDomains[newURL] += 1
+    except TypeError:
+        print ("TypeError")
+        return
 
 
 def scraper(url, resp):
@@ -101,15 +113,11 @@ def extract_next_links(url, resp):
         # creates the soup object to extract all the text
         soup = BeautifulSoup(htmlContent,'html.parser')
 
-
         # get all text from the document in one string
         fullText = soup.get_text().lower()
 
         # tokenizer that only tokenizes lower case words including apostrophes
         # and hyphenated words
-
-
-        # TODO: might have to change it to og tokenizer
 
         tokenizer = RegexpTokenizer('[a-z]+?-?[a-z]+')
         tokens = tokenizer.tokenize(fullText)
@@ -133,27 +141,14 @@ def extract_next_links(url, resp):
             pass
         else:
             # extract all the links in the document
-            isMatch, subDomain = isSubdomain(url)
-            if isMatch:
-                if subDomain not in subDomains:
-                    subDomains[subDomain] = 1
-                else:
-                    subDomains[subDomain] += 1
 
             for link in soup.find_all('a'):
-                # isMatch, subDomain = isSubdomain()
-                # if isSubdomain(url):
-                #     if url not in subDomains:
-                #         subDomains[url] = 1
-                #     else:
-                #         subDomains[url] += 1
                 if is_valid(link.get('href')) and isUniquePage(link.get('href')):
                     links.append(link.get('href'))
                     urls.add(link.get('href'))
-
+            isSubdomain(url)
     else:
         print("An error occurred while attempting to access the page.\n")
-
     return links
 
 def is_valid(url):
@@ -190,5 +185,4 @@ def is_valid(url):
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
 
     except TypeError:
-       # print ("TypeError")
         return False
